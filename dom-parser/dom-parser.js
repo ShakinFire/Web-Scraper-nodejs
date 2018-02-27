@@ -3,9 +3,10 @@ const {
 } = require('jsdom');
 const $init = require('jquery');
 
-const initDomParser = (url) => {
+const initDomParser = async (url) => {
+    const dom = await JSDOM.fromURL(url);
+
     return new Promise((resolve) => {
-        const dom = JSDOM.fromURL(url);
         const $ = $init(dom.window);
         resolve($);
     });
