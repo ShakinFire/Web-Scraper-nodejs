@@ -1,10 +1,10 @@
 const {
     getTotalPages,
-    extractProductsAmount,
     } = require('./extract-technopolis-pages.js');
 
 const { technopolis } = require('../selectors');
 const domParser = require('../dom-parser');
+const lodash = require('lodash');
 
 const getDomTree = async (titleUrl) => {
     const $ = await domParser.initDomParser(titleUrl);
@@ -26,13 +26,10 @@ const getAllUrlsPages = async () => {
         value = startUrl + index + endUrl;
         return getDomTree(value);
     }));
-    const final = [];
 
-    allTitles.forEach((value) => {
-        final.push(...value);
-    });
-    
-    console.log(final.length);
+    return lodash.flatten(allTitles);
 };
 
-getAllUrlsPages();
+module.exports = {
+    getAllUrlsPages,
+};

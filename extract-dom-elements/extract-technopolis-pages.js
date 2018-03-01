@@ -15,5 +15,4 @@ const getTotalPages = async () => {
 
 module.exports = {
     getTotalPages,
-    extractProductsAmount,
 };
