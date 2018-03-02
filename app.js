@@ -1,4 +1,8 @@
-const { getTotalPages } = require('./extract-dom-elements');
+const {
+    getTotalPages,
+    getAllUrlsPages,
+    collectData,
+    } = require('./extract-dom-elements');
 
 const run = async () => {
     const allPages = await getTotalPages();

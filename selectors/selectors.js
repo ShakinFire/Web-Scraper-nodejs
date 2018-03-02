@@ -6,6 +6,8 @@ module.exports = {
         startUrl: 'http://www.technopolis.bg',
         allProductsUrl: '.product-box .text h2 a',
         dataCharacteristics: '.line-tabs tbody td',
+        price: '.product-description .priceValue',
+        img: '.product-inner img',
     },
     technomarker: {
 
