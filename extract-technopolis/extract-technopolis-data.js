@@ -1,7 +1,4 @@
-const {
-    getAllUrlsPages,
-    } = require('./extract-technopolis-url.js');
-
+const { getAllUrlsPages } = require('./extract-technopolis-url.js');
 const { technopolis } = require('../selectors');
 const domParser = require('../dom-parser');
 
@@ -45,46 +42,31 @@ const domExtractData = async (productUrl) => {
             }
         }
     });
-
+    console.log(data);
     return data;
 };
 
 const collectData = async (titles, finishedData) => {
-    // const fullUrl = technopolis.startUrl + allTitles[0];
-    // const data = await domExtractData(fullUrl);
-
-    // const data = await Promise.all(allTitles.map((url) => {
-    //     const fullUrl = technopolis.startUrl + url;
-    //     return domExtractData(fullUrl);
-    // }));
-
     if (titles.length === 0) {
         return finishedData;
     }
 
-    const mainUrl = technopolis.startUrl;
+    const phoneUrls = titles.splice(0, 5);
+    finishedData.push(await Promise.all(phoneUrls.map((value) => {
+        const finalUrl = technopolis.startUrl + value;
+        return domExtractData(finalUrl);
+    })));
 
-    finishedData.push(await Promise.all([
-        domExtractData(mainUrl + titles.pop()),
-        domExtractData(mainUrl + titles.pop()),
-        // domExtractData(mainUrl + titles.pop()),
-        // domExtractData(mainUrl + titles.pop()),
-        // domExtractData(mainUrl + titles.pop()),
-    ]));
-    console.log(finishedData);
-    collectData(titles, finishedData);
+    return collectData(titles, finishedData);
 };
 
 const allData = async () => {
     const allTitles = await getAllUrlsPages();
     const all = await collectData(allTitles, []);
-
-    console.log(all);
+    // console.log(all);
+    return all;
 };
-
-
 allData();
-
 // module.exports = {
-//     collectData,
+//     allData,
 // };

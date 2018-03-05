@@ -9,7 +9,14 @@ module.exports = {
         price: '.product-description .priceValue',
         img: '.product-inner img',
     },
-    technomarker: {
-
+    technomarket: {
+        url: 'https://www.technomarket.bg/product/filter?filter_key=%2Ftelefoni%7Cstatic%7Cstatic&size=999',
+        allProductsUrl: 'div.product-name a',
+        startUrl: 'https://www.technomarket.bg',
+        price: '.contentholder .product-price .new',
+        productName: '.contentholder .product-thumb span',
+        mainInfo: '.contentholder .product-name .product-description li',
+        advanceInfoLeft: '.row-brp tbody th',
+        advanceInfoRight: '.row-brp tbody td',
     },
 };

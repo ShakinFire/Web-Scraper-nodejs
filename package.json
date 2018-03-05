@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "add-migration": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,9 @@
   "dependencies": {
     "jquery": "^3.3.1",
     "jsdom": "^11.6.2",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.35.2",
+    "sequelize-auto-migrations": "^1.0.2"
   }
 }
