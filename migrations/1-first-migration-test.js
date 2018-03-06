@@ -5,46 +5,46 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * dropTable "phone-tests"
  * createTable "phones", deps: []
  *
  **/
 
 var info = {
-    "revision": 2,
-    "name": "ahaiw",
-    "created": "2018-03-04T16:36:39.782Z",
+    "revision": 1,
+    "name": "first-migration-test",
+    "created": "2018-03-06T14:14:14.626Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-        fn: "dropTable",
-        params: ["phone-tests"]
-    },
-    {
-        fn: "createTable",
-        params: [
-            "phones",
-            {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
-                }
+    fn: "createTable",
+    params: [
+        "phones",
+        {
+            "id": {
+                "type": Sequelize.INTEGER,
+                "autoIncrement": true,
+                "primaryKey": true,
+                "allowNull": false
             },
-            {}
-        ]
-    }
-];
+            "vendor": {
+                "type": Sequelize.STRING
+            },
+            "model": {
+                "type": Sequelize.STRING
+            },
+            "createdAt": {
+                "type": Sequelize.DATE,
+                "allowNull": false
+            },
+            "updatedAt": {
+                "type": Sequelize.DATE,
+                "allowNull": false
+            }
+        },
+        {}
+    ]
+}];
 
 module.exports = {
     pos: 0,

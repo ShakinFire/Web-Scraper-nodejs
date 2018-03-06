@@ -1,14 +1,7 @@
 const domParser = require('../dom-parser');
 const { technomarket } = require('../selectors');
 const { getUrls } = require('./extract-technomarket-url');
-
-const getMainInfo = async ($) => {
-    const info = $(technomarket.mainInfo);
-    return [...info].map((pair) => {
-        pair = $(pair);
-        return pair.html().split(':');
-    });
-};
+const lodash = require('lodash');
 
 const getPrice = async ($) => {
     const currentPrice = $(technomarket.price).html();
@@ -22,17 +15,54 @@ const getPrice = async ($) => {
     return fullPrice.toFixed(2);
 };
 
-const extractData = async (url) => {
-    const data = {};
-    const $ = await domParser.initDomParser(url);
-    let name = $(technomarket.productName).html();
-    name = name.slice(15, name.length);
-    const price = await getPrice($);
-    const mainInfo = await getMainInfo($);
-    console.log(mainInfo);
+const getVendor = async ($) => {
+    let vendorModel = $(technomarket.productName).html();
+    vendorModel = vendorModel.slice(16, vendorModel.length);
+    const final = [vendorModel.substring(0, vendorModel.indexOf(' '))];
+    final.push(vendorModel
+        .substring(vendorModel.indexOf(' ') + 1, vendorModel.length));
+
+    return final;
 };
 
-extractData('https://www.technomarket.bg/telefoni/huawei-y6-2017-ds-gray-09158091');
+const instantExtract = async (data, $) => {
+    let swap = false;
+    if (typeof $(technomarket.SIM).html() !== 'undefined') {
+        swap = true;
+        const name = await getVendor($);
+        data.Vendor = name[0];
+        data.Model = name[1];
+        data.Price = await getPrice($);
+        data.EAN = $(technomarket.EAN).html();
+        data.Image = $(technomarket.img).attr('src');
+        data.SIM = $(technomarket.SIM).html().trim();
+        data.Camera = $(technomarket.camera).html().trim();
+        data.OS = $(technomarket.OS).html().trim();
+        data.Battery = $(technomarket.battery).html().trim();
+        data.Memory = $(technomarket.memory).html().trim().replace(/\D/g, '');
+    }
+    return swap;
+};
+
+const extractData = async (url) => {
+    const data = {
+        Vendor: null,
+        Model: null,
+        Price: null,
+        Image: null,
+        Memory: null,
+        OS: null,
+        Camera: null,
+        SIM: null,
+        EAN: null,
+    };
+    const $ = await domParser.initDomParser(url);
+    if (await instantExtract(data, $)) {
+        return data;
+    }
+
+    return null;
+};
 
 const collectData = async (titles, finishedData) => {
     if (titles.length === 0) {
@@ -45,16 +75,16 @@ const collectData = async (titles, finishedData) => {
         return extractData(fullUrl);
     })));
 
-    return finishedData;
+    return collectData(titles, finishedData);
 };
 
 const getAllData = async () => {
     const allTitles = await getUrls();
-    const all = collectData(allTitles, []);
+    const all = await collectData(allTitles, []);
 
-    return all;
+    return lodash.flatten(all).filter((obj) => obj !== null);
 };
 
-// module.exports = {
-//     getAllData,
-// };
+module.exports = {
+    getAllData,
+};

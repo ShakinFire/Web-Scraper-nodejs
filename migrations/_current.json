@@ -9,6 +9,12 @@
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
                 },
+                "vendor": {
+                    "seqType": "Sequelize.STRING"
+                },
+                "model": {
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
@@ -21,5 +27,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }

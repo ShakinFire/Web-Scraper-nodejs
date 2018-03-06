@@ -1,6 +1,7 @@
 const { getAllUrlsPages } = require('./extract-technopolis-url.js');
 const { technopolis } = require('../selectors');
 const domParser = require('../dom-parser');
+const lodash = require('lodash');
 
 const getPrice = async ($) => {
     const wholeSpan = $(technopolis.price).html();
@@ -15,34 +16,59 @@ const getPrice = async ($) => {
     return price.toFixed(2);
 };
 
+const getInfo = async (element, index, arr, data) => {
+    if (index % 2 === 0) {
+        if (element.innerHTML === 'Марка') {
+            data.Vendor = arr[index + 1].innerHTML;
+        } else if (element.innerHTML === 'МОДЕЛ') {
+            data.Model = arr[index + 1].innerHTML;
+        } else if (element.innerHTML === 'ВГРАДЕНА ПАМЕТ') {
+            const number = arr[index + 1].innerHTML.replace(/\D/g, '');
+            data.Memory = number;
+        } else if (element.innerHTML === 'ТИП БАТЕРИЯ') {
+            data.Battery = arr[index + 1].innerHTML;
+        } else if (element.innerHTML === 'ОПЕРАЦИОННА СИСТЕМА') {
+            if (arr[index + 1].innerHTML[0] === '<') {
+                data.OS = null;
+            } else {
+                data.OS = arr[index + 1].innerHTML;
+            }
+        } else if (element.innerHTML === 'ТИП SIM КАРТА') {
+            data.SIM = arr[index + 1].innerHTML;
+        } else if (element.innerHTML === 'ЗАДНА КАМЕРА') {
+            data.Camera = arr[index + 1].innerHTML;
+        } else if (element.innerHTML === 'EAN') {
+            data.EAN = arr[index + 1].innerHTML;
+        }
+    }
+};
+
 const domExtractData = async (productUrl) => {
     const $ = await domParser.initDomParser(productUrl);
-    const data = {};
+    const data = {
+        Vendor: null,
+        Model: null,
+        Price: null,
+        Image: null,
+        Memory: null,
+        Battery: null,
+        OS: null,
+        Camera: null,
+        SIM: null,
+        EAN: null,
+    };
     const holdData = $(technopolis.dataCharacteristics);
-    data.price = await getPrice($);
-    data.img = technopolis.startUrl + $(technopolis.img).attr('src');
+    data.Price = await getPrice($);
+    data.Image = technopolis.startUrl + $(technopolis.img).attr('src');
 
     [...holdData].forEach((element, index, arr) => {
-        if (index % 2 === 0) {
-            data[element.innerHTML] = '';
-        } else {
-            if (element.innerHTML[0] === '<') {
-                let sub = element.innerHTML
-                .substring(element.innerHTML
-                .indexOf('option') + 7, element.innerHTML
-                .indexOf('option') + 9);
-
-                if (sub === 'ye') {
-                    sub = 'yes';
-                }
-                sub = sub.toUpperCase();
-                data[arr[index - 1].innerHTML] = sub;
-            } else {
-                data[arr[index - 1].innerHTML] = element.innerHTML;
-            }
-        }
+        return getInfo(element, index, arr, data);
     });
-    console.log(data);
+
+    if (data.SIM === null) {
+        data.SIM = 'DUAL SIM';
+    }
+
     return data;
 };
 
@@ -63,10 +89,10 @@ const collectData = async (titles, finishedData) => {
 const allData = async () => {
     const allTitles = await getAllUrlsPages();
     const all = await collectData(allTitles, []);
-    // console.log(all);
-    return all;
+    console.log(all);
+    return lodash.flatten(all);
 };
-allData();
-// module.exports = {
-//     allData,
-// };
+
+module.exports = {
+    allData,
+};
