@@ -51,6 +51,7 @@ const extractData = async (url) => {
         Price: null,
         Image: null,
         Memory: null,
+        Battery: null,
         OS: null,
         Camera: null,
         SIM: null,
@@ -78,7 +79,7 @@ const collectData = async (titles, finishedData) => {
     return collectData(titles, finishedData);
 };
 
-const getAllData = async () => {
+const getTechnomarketData = async () => {
     const allTitles = await getUrls();
     const all = await collectData(allTitles, []);
 
@@ -86,5 +87,5 @@ const getAllData = async () => {
 };
 
 module.exports = {
-    getAllData,
+    getTechnomarketData,
 };

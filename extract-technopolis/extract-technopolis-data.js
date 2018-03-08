@@ -86,7 +86,7 @@ const collectData = async (titles, finishedData) => {
     return collectData(titles, finishedData);
 };
 
-const allData = async () => {
+const allTechnopolisData = async () => {
     const allTitles = await getAllUrlsPages();
     const all = await collectData(allTitles, []);
     console.log(all);
@@ -94,5 +94,5 @@ const allData = async () => {
 };
 
 module.exports = {
-    allData,
+    allTechnopolisData,
 };

@@ -28,16 +28,6 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
-                },
-                "vendorId": {
-                    "allowNull": false,
-                    "references": {
-                        "model": "vendors",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -114,6 +104,16 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
+                },
+                "modelId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "models",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -187,5 +187,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 4
 }
