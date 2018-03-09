@@ -81,6 +81,7 @@
                 },
                 "name": {
                     "allowNull": false,
+                    "unique": true,
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
@@ -105,6 +106,7 @@
                 },
                 "brand": {
                     "allowNull": false,
+                    "unique": true,
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
@@ -187,5 +189,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 6
 }

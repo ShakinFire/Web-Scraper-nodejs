@@ -56,6 +56,7 @@ const extractData = async (url) => {
         Camera: null,
         SIM: null,
         EAN: null,
+        Store: 'technomarket',
     };
     const $ = await domParser.initDomParser(url);
     if (await instantExtract(data, $)) {

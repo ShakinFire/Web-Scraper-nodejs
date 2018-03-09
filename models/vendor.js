@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     brand: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
   }, {});
   vendor.associate = function(models) {

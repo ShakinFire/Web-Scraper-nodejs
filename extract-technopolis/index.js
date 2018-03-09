@@ -7,11 +7,11 @@ const {
 } = require('./extract-technopolis-url.js');
 
 const {
-    collectData,
-} = require('./extraxt-technopolis-data.js');
+    allTechnopolisData,
+} = require('./extract-technopolis-data.js');
 
 module.exports = {
     getTotalPages,
     getAllUrlsPages,
-    collectData,
+    allTechnopolisData,
 };

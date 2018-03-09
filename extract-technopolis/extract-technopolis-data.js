@@ -56,6 +56,7 @@ const domExtractData = async (productUrl) => {
         Camera: null,
         SIM: null,
         EAN: null,
+        Store: 'technopolis',
     };
     const holdData = $(technopolis.dataCharacteristics);
     data.Price = await getPrice($);
@@ -89,7 +90,7 @@ const collectData = async (titles, finishedData) => {
 const allTechnopolisData = async () => {
     const allTitles = await getAllUrlsPages();
     const all = await collectData(allTitles, []);
-    console.log(all);
+
     return lodash.flatten(all);
 };
 

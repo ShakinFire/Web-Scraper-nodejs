@@ -3,10 +3,10 @@ const {
 } = require('./extract-technomarket-url');
 
 const {
-    getAllData,
+    getTechnomarketData,
 } = require('./extract-technomarket-data');
 
 module.exports = {
     getUrls,
-    getAllData,
+    getTechnomarketData,
 };
