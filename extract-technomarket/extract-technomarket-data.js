@@ -38,7 +38,7 @@ const instantExtract = async (data, $) => {
         data.SIM = $(technomarket.SIM).html().trim();
         data.Camera = $(technomarket.camera).html().trim();
         data.OS = $(technomarket.OS).html().trim();
-        data.Battery = $(technomarket.battery).html().trim();
+        data.Battery = $(technomarket.battery).html().trim().replace(/\D/g, '');
         data.Memory = $(technomarket.memory).html().trim().replace(/\D/g, '');
     }
     return swap;
@@ -46,16 +46,16 @@ const instantExtract = async (data, $) => {
 
 const extractData = async (url) => {
     const data = {
-        Vendor: null,
-        Model: null,
-        Price: null,
-        Image: null,
-        Memory: null,
-        Battery: null,
-        OS: null,
-        Camera: null,
-        SIM: null,
-        EAN: null,
+        Vendor: '',
+        Model: '',
+        Price: '',
+        Image: '',
+        Memory: '',
+        Battery: '',
+        OS: '',
+        Camera: '',
+        SIM: '',
+        EAN: '',
         Store: 'technomarket',
     };
     const $ = await domParser.initDomParser(url);

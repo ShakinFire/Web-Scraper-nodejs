@@ -16,33 +16,66 @@ const {
 const lodash = require('lodash');
 
 const filldb = async (phone) => {
-    const storesId = await store.findCreateFind({
+    const samePhone = await spec.findAll({
         where: {
-            name: phone.Store,
+            type: phone.EAN,
         },
     });
 
-    const vendorsId = await vendor.findCreateFind({
-        whre: {
-            brand: phone.Vendor,
-        },
-    });
+    if (samePhone.length === 0) {
+        const stores = await store.findCreateFind({
+            where: {
+                name: phone.Store,
+            },
+        });
 
-    const modelTable = {
-        model: phone.Model,
-        image: phone.Image,
-        price: phone.Price,
-        vendorId: vendorsId.id,
-    };
+        const vendors = await vendor.findCreateFind({
+            where: {
+                brand: phone.Vendor,
+            },
+        });
 
-    
+        const models = await model.create({
+            model: phone.Model,
+            picture: phone.Image,
+            price: phone.Price,
+            vendorId: vendors[0].id,
+        });
+
+        const allSpecs = {
+            Battery: phone.Battery,
+            OS: phone.OS,
+            Camera: phone.Camera,
+            SIM: phone.SIM,
+            EAN: phone.EAN,
+        };
+
+        let keys = Object.keys(allSpecs);
+
+        keys = await Promise.all(keys.map(async (key) => {
+            const finishedSpecs = await spec.findCreateFind({
+                where: {
+                    type: key,
+                    value: allSpecs[key],
+                },
+            });
+            return finishedSpecs[0].id;
+        }));
+
+        models.setSpecs(keys);
+        models.setStores([stores[0].id]);
+    }
 };
 
 const iterateData = async () => {
-    // const allData = lodash.flatten([await allTechnopolisData(),
-    //     await getTechnomarketData()]);
+    const allData = lodash.flatten([await allTechnopolisData(),
+        await getTechnomarketData()]);
 
-    // console.log(allData);
+    await Promise.all(allData.map((phone) => {
+        return filldb(phone);
+    }));
 };
 
-iterateData();
+module.exports = {
+    iterateData,
+};

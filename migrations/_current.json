@@ -68,7 +68,18 @@
                     "seqType": "Sequelize.DATE"
                 }
             },
-            "indexes": []
+            "indexes": {
+                "87983df9df9fe8649be874240f04c6fe9793a57e": {
+                    "unique": true,
+                    "fields": [
+                        "type",
+                        "value"
+                    ],
+                    "options": {
+                        "indicesType": "UNIQUE"
+                    }
+                }
+            }
         },
         "stores": {
             "tableName": "stores",
@@ -189,5 +200,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 1
 }
