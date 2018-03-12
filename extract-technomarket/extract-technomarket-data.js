@@ -36,7 +36,7 @@ const instantExtract = async (data, $) => {
         data.EAN = $(technomarket.EAN).html();
         data.Image = $(technomarket.img).attr('src');
         data.SIM = $(technomarket.SIM).html().trim();
-        data.Camera = $(technomarket.camera).html().trim();
+        data.Camera = $(technomarket.camera).html().trim().replace(/\D/g, '');
         data.OS = $(technomarket.OS).html().trim();
         data.Battery = $(technomarket.battery).html().trim().replace(/\D/g, '');
         data.Memory = $(technomarket.memory).html().trim().replace(/\D/g, '');

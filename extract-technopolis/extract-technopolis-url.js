@@ -11,6 +11,9 @@ const getDomTree = async (titleUrl) => {
     const allTitleArr = $(technopolis.allProductsUrl);
     return [...allTitleArr].map((link) => {
         link = $(link);
+        if (link.attr('href') === '/bg/Mobile-phones/Mobile-phone-MOTOROLA-MOTO-Z-DUAL-SIM-BLACK/p/572293') {
+            return null;
+        }
         return link.attr('href');
     });
 };
@@ -27,7 +30,7 @@ const getAllUrlsPages = async () => {
         return getDomTree(value);
     }));
 
-    return lodash.flatten(allTitles);
+    return lodash.flatten(allTitles).filter((obj) => obj !== null);
 };
 
 module.exports = {

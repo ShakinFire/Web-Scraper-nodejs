@@ -7,11 +7,11 @@ const {
 } = require('./filter.js');
 
 const {
-    searchBy,
+    searchFor,
 } = require('./search.js');
 
 module.exports = {
     orderBy,
     filterBy,
-    searchBy,
+    searchFor,
 };

@@ -36,7 +36,7 @@ const getInfo = async (element, index, arr, data) => {
         } else if (element.innerHTML === 'ТИП SIM КАРТА') {
             data.SIM = arr[index + 1].innerHTML;
         } else if (element.innerHTML === 'ЗАДНА КАМЕРА') {
-            data.Camera = arr[index + 1].innerHTML;
+            data.Camera = arr[index + 1].innerHTML.replace(/\D/g, '');
         } else if (element.innerHTML === 'EAN') {
             data.EAN = arr[index + 1].innerHTML;
         }
@@ -66,10 +66,9 @@ const domExtractData = async (productUrl) => {
         return getInfo(element, index, arr, data);
     });
 
-    if (data.SIM === null) {
+    if (data.SIM === '') {
         data.SIM = 'DUAL SIM';
     }
-
     return data;
 };
 
@@ -90,7 +89,6 @@ const collectData = async (titles, finishedData) => {
 const allTechnopolisData = async () => {
     const allTitles = await getAllUrlsPages();
     const all = await collectData(allTitles, []);
-
     return lodash.flatten(all);
 };
 

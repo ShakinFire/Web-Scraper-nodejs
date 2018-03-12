@@ -8,14 +8,14 @@ const {
 const Sequelize = require('sequelize');
 
 const orderBy = async (column) => {
-    let orderedRecords;
+    let orderedData;
     if (column === 'model' || column === 'brand' || column === 'stores'
         || column === 'price') {
         if (column === 'stores') {
             column += '.name';
         }
 
-        orderedRecords = await model.findAll({
+        orderedData = await model.findAll({
             include: [
                 {
                     model: vendor,
@@ -33,7 +33,7 @@ const orderBy = async (column) => {
         });
     } else if (column === 'memory' || column === 'battery' || column === 'os'
     || column === 'camera' || column === 'sim' || column === 'ean') {
-        orderedRecords = await model.findAll({
+        orderedData = await model.findAll({
             include: [
                 {
                     model: spec,
@@ -57,7 +57,7 @@ const orderBy = async (column) => {
         console.log('Invalid column');
     }
 
-    orderedRecords.map((record) => console.log(record.get({
+    orderedData.map((record) => console.log(record.get({
         plain: true,
     })));
 };

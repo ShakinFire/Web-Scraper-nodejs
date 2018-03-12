@@ -48,6 +48,7 @@ const filldb = async (phone) => {
             Camera: phone.Camera,
             SIM: phone.SIM,
             EAN: phone.EAN,
+            Memory: phone.Memory,
         };
 
         let keys = Object.keys(allSpecs);
@@ -71,7 +72,6 @@ const iterateData = async () => {
     const allData = lodash.flatten([await allTechnopolisData(),
         await getTechnomarketData()]);
 
-    console.log('Finished scraping');
     await Promise.all(allData.map((phone) => {
         return filldb(phone);
     }));
