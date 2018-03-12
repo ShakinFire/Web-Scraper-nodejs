@@ -29,7 +29,7 @@ const getInfo = async (element, index, arr, data) => {
             data.Battery = arr[index + 1].innerHTML.replace(/\D/g, '');
         } else if (element.innerHTML === 'ОПЕРАЦИОННА СИСТЕМА') {
             if (arr[index + 1].innerHTML[0] === '<') {
-                data.OS = null;
+                data.OS = 'No information';
             } else {
                 data.OS = arr[index + 1].innerHTML;
             }
@@ -46,16 +46,16 @@ const getInfo = async (element, index, arr, data) => {
 const domExtractData = async (productUrl) => {
     const $ = await domParser.initDomParser(productUrl);
     const data = {
-        Vendor: '',
-        Model: '',
-        Price: '',
-        Image: '',
-        Memory: '',
-        Battery: '',
-        OS: '',
-        Camera: '',
-        SIM: '',
-        EAN: '',
+        Vendor: 'No information',
+        Model: 'No information',
+        Price: 'No information',
+        Image: 'No information',
+        Memory: 'No information',
+        Battery: 'No information',
+        OS: 'No information',
+        Camera: 'No information',
+        SIM: 'No information',
+        EAN: 'No information',
         Store: 'technopolis',
     };
     const holdData = $(technopolis.dataCharacteristics);

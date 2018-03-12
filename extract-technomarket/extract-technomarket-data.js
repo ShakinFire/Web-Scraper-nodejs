@@ -46,16 +46,16 @@ const instantExtract = async (data, $) => {
 
 const extractData = async (url) => {
     const data = {
-        Vendor: '',
-        Model: '',
-        Price: '',
-        Image: '',
-        Memory: '',
-        Battery: '',
-        OS: '',
-        Camera: '',
-        SIM: '',
-        EAN: '',
+        Vendor: 'No information',
+        Model: 'No information',
+        Price: 'No information',
+        Image: 'No information',
+        Memory: 'No information',
+        Battery: 'No information',
+        OS: 'No information',
+        Camera: 'No information',
+        SIM: 'No information',
+        EAN: 'No information',
         Store: 'technomarket',
     };
     const $ = await domParser.initDomParser(url);

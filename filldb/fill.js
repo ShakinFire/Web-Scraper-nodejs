@@ -71,11 +71,11 @@ const iterateData = async () => {
     const allData = lodash.flatten([await allTechnopolisData(),
         await getTechnomarketData()]);
 
+    console.log('Finished scraping');
     await Promise.all(allData.map((phone) => {
         return filldb(phone);
     }));
 };
 
-module.exports = {
-    iterateData,
-};
+iterateData();
+// console.log('Finished filling');

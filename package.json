@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "migrate": "./node_modules/.bin/sequelize db:migrate",
-    "add-migration": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
+    "add-migration": "./node_modules/sequelize-auto-migrations/bin/makemigration.js",
+    "statistics": "node ./statistics/statistics.js",
+    "update": "node ./filldb/fill.js"
   },
   "repository": {
     "type": "git",
