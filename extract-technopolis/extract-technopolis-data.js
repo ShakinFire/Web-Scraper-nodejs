@@ -36,7 +36,7 @@ const getInfo = async (element, index, arr, data) => {
         } else if (element.innerHTML === 'ТИП SIM КАРТА') {
             data.SIM = arr[index + 1].innerHTML;
         } else if (element.innerHTML === 'ЗАДНА КАМЕРА') {
-            data.Camera = arr[index + 1].innerHTML.replace(/\D/g, '');
+            data.Camera = arr[index + 1].innerHTML.replace(/[^0-9.]/g, '');
         } else if (element.innerHTML === 'EAN') {
             data.EAN = arr[index + 1].innerHTML;
         }

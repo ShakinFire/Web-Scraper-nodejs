@@ -7,7 +7,7 @@
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "add-migration": "./node_modules/sequelize-auto-migrations/bin/makemigration.js",
     "statistics": "node ./statistics/statistics.js",
-    "update": "node ./filldb/fill.js"
+    "update": "node ./updatedb/update.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ShakinFire/Web-Scraper-nodejs#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
     "jquery": "^3.3.1",
     "jsdom": "^11.6.2",
     "lodash": "^4.17.5",

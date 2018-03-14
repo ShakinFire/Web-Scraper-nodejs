@@ -59,6 +59,27 @@ const filterBy = async (column, cond, extendedValue) => {
                 },
             ],
         });
+    } else if (column === 'store') {
+        filteredData = await model.findAll({
+            include: [
+                {
+                    model: spec,
+                    attributes: ['type', 'value'],
+                },
+                {
+                    model: vendor,
+                    attributes: ['brand'],
+                },
+                {
+                    model: store,
+                    attributes: ['name'],
+                    order: Sequelize.col(column),
+                    where: {
+                        name: cond,
+                    },
+                },
+            ],
+        });
     } else if (column === 'price') {
         filteredData = await model.findAll({
             include: [
@@ -77,12 +98,13 @@ const filterBy = async (column, cond, extendedValue) => {
             ],
             order: Sequelize.col('price'),
             where: {
-                picture: {
+                price: {
                     [op]: +extendedValue,
                 },
             },
         });
-    } else if (column === 'memory' || column === 'battery') {
+    } else if (column === 'memory' || column === 'battery'
+        || column === 'camera') {
         filteredData = await model.findAll({
             include: [
                 {
@@ -114,9 +136,12 @@ const filterBy = async (column, cond, extendedValue) => {
         console.log('Nothing found, check your command!');
     }
 
-    filteredData.map((record) => console.log(record.get({
-        plain: true,
-    })));
+    if (typeof filteredData !== 'undefined') {
+        filteredData.map((record) => record.get({
+            plain: true,
+        }));
+    }
+    return filteredData;
 };
 
 module.exports = {

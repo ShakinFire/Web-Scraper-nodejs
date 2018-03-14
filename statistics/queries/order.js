@@ -57,9 +57,12 @@ const orderBy = async (column) => {
         console.log('Invalid column');
     }
 
-    orderedData.map((record) => console.log(record.get({
-        plain: true,
-    })));
+    if (typeof orderedData !== 'undefined') {
+        orderedData.map((record) => console.log(record.get({
+            plain: true,
+        })));
+    }
+    return orderedData;
 };
 
 module.exports = {

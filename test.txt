@@ -1,6 +1,845 @@
 
-> Web-Scraper-nodejs@1.0.0 statistics C:\Users\Georgi\Desktop\Telerik\Telerik-Academy-Alpha-JS\Projects\Web-Scraper-nodejs
-> node ./statistics/statistics.js "filter-by" "price" "gt" "200"
+> Web-Scraper-nodejs@1.0.0 statistics C:\Users\Tsvetelina\Desktop\Telerik\Telerik\Web-Scraper-nodejs
+> node ./statistics/statistics.js "search-for" "os" "android"
 
-Executing (default): SELECT `model`.`id`, `model`.`model`, `model`.`picture`, `model`.`price`, `model`.`createdAt`, `model`.`updatedAt`, `model`.`vendorId`, `specs`.`id` AS `specs.id`, `specs`.`type` AS `specs.type`, `specs`.`value` AS `specs.value`, `specs->modelSpec`.`createdAt` AS `specs.modelSpec.createdAt`, `specs->modelSpec`.`updatedAt` AS `specs.modelSpec.updatedAt`, `specs->modelSpec`.`modelId` AS `specs.modelSpec.modelId`, `specs->modelSpec`.`specId` AS `specs.modelSpec.specId`, `vendor`.`id` AS `vendor.id`, `vendor`.`brand` AS `vendor.brand`, `stores`.`id` AS `stores.id`, `stores`.`name` AS `stores.name`, `stores->modelStore`.`createdAt` AS `stores.modelStore.createdAt`, `stores->modelStore`.`updatedAt` AS `stores.modelStore.updatedAt`, `stores->modelStore`.`modelId` AS `stores.modelStore.modelId`, `stores->modelStore`.`storeId` AS `stores.modelStore.storeId` FROM `models` AS `model` LEFT OUTER JOIN ( `modelSpec` AS `specs->modelSpec` INNER JOIN `specs` AS `specs` ON `specs`.`id` = `specs->modelSpec`.`specId`) ON `model`.`id` = `specs->modelSpec`.`modelId` LEFT OUTER JOIN `vendors` AS `vendor` ON `model`.`vendorId` = `vendor`.`id` LEFT OUTER JOIN ( `modelStore` AS `stores->modelStore` INNER JOIN `stores` AS `stores` ON `stores`.`id` = `stores->modelStore`.`storeId`) ON `model`.`id` = `stores->modelStore`.`modelId` WHERE `model`.`picture` > 200 ORDER BY `price`;
-Nothing found, check your command!
+Executing (default): SELECT `model`.`id`, `model`.`model`, `model`.`picture`, `model`.`price`, `model`.`createdAt`, `model`.`updatedAt`, `model`.`vendorId`, `specs`.`id` AS `specs.id`, `specs`.`type` AS `specs.type`, `specs`.`value` AS `specs.value`, `specs->modelSpec`.`createdAt` AS `specs.modelSpec.createdAt`, `specs->modelSpec`.`updatedAt` AS `specs.modelSpec.updatedAt`, `specs->modelSpec`.`modelId` AS `specs.modelSpec.modelId`, `specs->modelSpec`.`specId` AS `specs.modelSpec.specId`, `vendor`.`id` AS `vendor.id`, `vendor`.`brand` AS `vendor.brand`, `stores`.`id` AS `stores.id`, `stores`.`name` AS `stores.name`, `stores->modelStore`.`createdAt` AS `stores.modelStore.createdAt`, `stores->modelStore`.`updatedAt` AS `stores.modelStore.updatedAt`, `stores->modelStore`.`modelId` AS `stores.modelStore.modelId`, `stores->modelStore`.`storeId` AS `stores.modelStore.storeId` FROM `models` AS `model` INNER JOIN ( `modelSpec` AS `specs->modelSpec` INNER JOIN `specs` AS `specs` ON `specs`.`id` = `specs->modelSpec`.`specId`) ON `model`.`id` = `specs->modelSpec`.`modelId` AND `specs`.`value` LIKE '%os%' LEFT OUTER JOIN `vendors` AS `vendor` ON `model`.`vendorId` = `vendor`.`id` LEFT OUTER JOIN ( `modelStore` AS `stores->modelStore` INNER JOIN `stores` AS `stores` ON `stores`.`id` = `stores->modelStore`.`storeId`) ON `model`.`id` = `stores->modelStore`.`modelId`;
+Brand: APPLE
+Model: IPHONE SE 32GB SPACE GRAY
+Price: 659
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE SE 32GB ROSE GOLD
+Price: 659
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE SE 32GB GOLD
+Price: 659
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 6 32GB SPACE GRAY
+Price: 739
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB GOLD
+Price: 1219
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB JET BLACK
+Price: 1219
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB ROSE GOLD
+Price: 1219
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB BLACK
+Price: 1219
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 64GB GOLD
+Price: 1529
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 64GB SPACE GRAY
+Price: 1529
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 64GB SILVER
+Price: 1529
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 64GB SILVER
+Price: 1799
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 256GB SILVER
+Price: 1899
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 256GB GOLD
+Price: 1899
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 256GB SPACE GRAY
+Price: 1899
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 256G SPACE GRAY
+Price: 2169
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 256GB GOLD
+Price: 2169
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 256GB SILVER
+Price: 2169
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 64GB SPACE GRAY
+Price: 2199
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 64GB SILVER
+Price: 2199
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 256GB SPACE GRAY
+Price: 2599
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 256GB SILVER
+Price: 2599
+store      
+-----------
+technopolis
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 256GB SILVER
+Price: 2599
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 256GB SPACE GREY
+Price: 2599
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 6 32GB S.GREY
+Price: 739
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 5C 8GB WHITE MG8X2CM/A
+Price: 699
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 128GB GOLD
+Price: 1499
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 PLUS 32GB JET BLACK
+Price: 1599
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 64GB SPACE GREY
+Price: 1529
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 64GB GOLD
+Price: 1529
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 128GB RED SPECIAL EDITION
+Price: 1529
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 PLUS 256GB GOLD
+Price: 1999
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB ROSE GOLD
+Price: 1219
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 64GB SILVER
+Price: 1529
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 128GB SILVER
+Price: 1499
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 256GB SILVER
+Price: 2169
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 PLUS 32GB ROSE GOLD
+Price: 1599
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 256GB SILVER
+Price: 1749
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE SE 16GB SILVER
+Price: 629
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB SILVER
+Price: 1219
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 128GB JET BLACK
+Price: 1499
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 256GB JET BLACK
+Price: 1749
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 64GB SPACE GREY
+Price: 1799
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 256GB SPACE GREY
+Price: 2169
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE SE 32GB GOLD
+Price: 659
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 64GB GOLD
+Price: 1799
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 256GB BLACK
+Price: 1749
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 PLUS 256GB GOLD
+Price: 2169
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 64GB SILVER
+Price: 2199
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 128GB BLACK
+Price: 1499
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE SE 16GB SPACE GRAY
+Price: 629
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE SE 32GB SPACE GRAY
+Price: 679
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB BLACK
+Price: 1219
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 32GB JET BLACK
+Price: 1219
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 256GB SILVER
+Price: 1899
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 256GB SPACE GREY
+Price: 1899
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 256GB ROSE GOLD
+Price: 1749
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 8 256GB GOLD
+Price: 1899
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE 7 PLUS 256GB ROSE GOLD
+Price: 1999
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************
+Brand: APPLE
+Model: IPHONE X 64GB SPACE GREY
+Price: 2199
+store       
+------------
+technomarket
+
+
+spec  val
+----  ---
+OS    IOS
+
+
+**************************************************

@@ -29,12 +29,14 @@ const searchFor = async (searchedValue) => {
     });
 
     if (searchedData.length !== 0) {
-        searchedData.map((record) => console.log(record.get({
+        searchedData.map((record) => record.get({
             plain: true,
-        })));
+        }));
     } else {
-        console.log('Nothing found, check your command!');
+        console.log('Nothing found!');
     }
+
+    return searchedData;
 };
 
 module.exports = {
